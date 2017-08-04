@@ -1,0 +1,116 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../paper-item/paper-item.html">
+<link rel="import" href="../paper-input/paper-input.html">
+<link rel="import" href="../paper-listbox/paper-listbox.html">
+<link rel="import" href="../paper-dropdown-menu/paper-dropdown-menu.html">
+<!--
+`<Name>` is Description
+
+@element Name
+-->
+<dom-module id="polymer-address">
+    <template>
+        <style>
+            :host {
+                display: block
+            }
+
+            .address-container{
+              width:100%;              
+              float:left;              
+              padding:0 20px;
+              box-sizing: border-box;
+              }
+
+              .address-container paper-input,.address-container paper-dropdown-menu{
+             width:48%;
+             float:left;
+             margin:0 1% 0 ; 
+           }
+            paper-input:focus, paper-dropdown-menu:focus{
+             
+        border-bottom-color: #ff6200 !important;
+     
+            }
+        </style>
+<div class="address-container">
+    <section>
+      <paper-input name="Address1" label="Address1" id="Resi-Address1" value={{addressdetails.address1::input}} required auto-validate error-message="Address required"></paper-input>
+      <paper-input name="Address2" label="Address1" id="Resi-Address2" value={{addressdetails.address2::input}}></paper-input>
+      <paper-dropdown-menu label="City"  on-iron-select="_rescitySelected" required auto-validate error-message="City required" value="{{addressdetails.city}}">
+          <paper-listbox slot="dropdown-content">
+            <paper-item>Rotterdam</paper-item>
+            <paper-item>Amsterdam</paper-item>
+            <paper-item>Drenthe</paper-item>
+            <paper-item>Flevoland</paper-item>
+          </paper-listbox>
+        </paper-dropdown-menu>
+        <paper-dropdown-menu label="State" on-iron-select="_resstateSelected" value="{{addressdetails.state}}" required auto-validate error-message="State required">
+          <paper-listbox slot="dropdown-content">
+            <paper-item>Rotterdam</paper-item>
+            <paper-item>Amsterdam</paper-item>
+            <paper-item>Drenthe</paper-item>
+            <paper-item>Flevoland</paper-item>
+          </paper-listbox>
+        </paper-dropdown-menu>
+        <paper-input name="PIN" label="Pin" id="Resi-PIN" value={{addressdetails.pincode::input}} maxlength="6" required auto-validate allowed-pattern="[0-9]" error-message="Pincode Required"></paper-input>
+      <paper-dropdown-menu label="Country" on-iron-select="_rescountrySelected" value="{{addressdetails.country}}" required auto-validate error-message="Country required">
+          <paper-listbox slot="dropdown-content">
+            <paper-item>Nederlands</paper-item>
+            <paper-item>Belgium</paper-item>
+            <paper-item>Australiya</paper-item>
+            <paper-item>Germany</paper-item>
+          </paper-listbox>
+        </paper-dropdown-menu>
+    </section>
+</div>
+    </template>
+
+    <script>
+        class PolymerAddress extends Polymer.Element {
+
+            static get is() { return 'polymer-address'; }
+
+            static get properties() {
+                return {
+                    addressdetails:{
+                        type:Object,
+                        value:{},
+                        notify:true,
+                        reflectToAttribute:true
+                    }
+                };
+            }
+
+            constructor() {
+                super();
+            }
+
+            ready() {
+                super.ready();
+
+                Polymer.RenderStatus.afterNextRender(this, function() {
+                    
+                });
+            }
+
+            _rescitySelected(e) {
+                var selectedItem = e.target.selectedItem.innerText;
+                this.addressdetails.city = selectedItem;
+            }
+
+            _resstateSelected(e) {
+                var selectedItem = e.target.selectedItem.innerText;
+                this.addressdetails.state = selectedItem;
+            }
+            
+            _rescountrySelected(e) {
+                var selectedItem = e.target.selectedItem.innerText;
+                this.addressdetails.country = selectedItem;
+            }
+
+        }
+
+        window.customElements.define(PolymerAddress.is, PolymerAddress);
+    </script>
+</dom-module>

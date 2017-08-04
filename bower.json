@@ -1,0 +1,30 @@
+{
+  "name": "polymer-address",
+  "version": "0.0.1",
+  "homepage": "https://github.com/harshitamudunuri/Polymer-Address",
+  "description": "polymer-address",
+  "main": "https://github.com/harshitamudunuri/Polymer-Address",
+  "keywords": [
+    "\"{{site.project_name}}\"",
+    "web-components"
+  ],
+  "authors": [
+    "harshita"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "^2.0.2",
+    "paper-input": "PolymerElements/paper-input#^2.0.1",
+    "paper-item": "PolymerElements/paper-item#^2.0.0",
+    "paper-listbox": "PolymerElements/paper-listbox#^2.0.0",
+    "polymer-address": "Polymer-Address#*",
+    "paper-dropdown-menu": "PolymerElements/paper-dropdown-menu#^2.0.0"
+  }
+}
